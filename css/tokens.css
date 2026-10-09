@@ -1,0 +1,66 @@
+/* =========================================================
+   tokens.css: design tokens
+   ---------------------------------------------------------
+   "Tokens" are named values (colors, fonts, sizes) stored as
+   CSS custom properties, e.g. --ink. Declare once here, then
+   use anywhere with var(--ink). Change a value here and it
+   updates across the whole site.
+   ========================================================= */
+
+:root {
+  /* ---------- Colors: page and content ---------- */
+  --ink:        #1F2A44;  /* main text, dark buttons */
+  --ink-soft:   #3A4560;  /* body text in the panel */
+  --page-bg:    #F1EEE8;  /* page background */
+  --card-bg:    #FFFDF7;  /* content panel */
+  --accent:     #B4532A;  /* section labels, link hover */
+  --highlight:  #F2C14E;  /* "in progress" badge, focus ring */
+  --line:       #E6E0D4;  /* borders, dividers */
+
+  /* ---------- Colors: the room (lights on) ---------- */
+  --wall:       #A9BFD9;
+  --floor:      #D9A36F;
+  --sky:        #CFE6F5;  /* window glass */
+  --orb:        #F2C14E;  /* the sun */
+
+  /* ---------- Colors: room objects ---------- */
+  --wood:       #7A5230;
+  --wood-dark:  #5C3C22;
+  --cork:       #C99A62;
+  --teal:       #3E7C7B;
+  --coral:      #E07A4F;
+  --periwinkle: #A5B8D8;
+
+  /* ---------- Fonts ---------- */
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;  /* logo, headings */
+  --font-body:    "DM Sans", system-ui, sans-serif;              /* everything else */
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;     /* build log, /now box */
+
+  /* ---------- Type sizes ---------- */
+  /* clamp(min, preferred, max): shrinks on small screens, never below 36px or above 56px */
+  --text-hero:    clamp(2.25rem, 6vw, 3.5rem);  /* 56px on desktop */
+  --text-h2:      clamp(1.75rem, 4vw, 2.125rem); /* 34px on desktop */
+  --text-body:    1.0625rem;                     /* 17px */
+  --text-small:   0.875rem;                      /* 14px */
+  --leading-body: 1.6;
+  --measure:      70ch;  /* max line length (~70 characters) */
+
+  /* ---------- Shape and spacing ---------- */
+  --max-width:    1120px;
+  --gutter:       24px;
+  --radius-room:  28px;
+  --radius-panel: 24px;
+  --radius-card:  16px;
+  --radius-pill:  999px;
+  --tap-min:      44px;  /* minimum height for buttons and links */
+}
+
+/* ---------- Lights off ----------
+   room.js (Phase 4) will add data-lights="off" to <html>.
+   Only the room tokens change; the content stays the same. */
+:root[data-lights="off"] {
+  --wall:  #26314D;
+  --floor: #6B4A30;
+  --sky:   #121A30;
+  --orb:   #E8E4D8;  /* the moon */
+}

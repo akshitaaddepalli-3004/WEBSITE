@@ -1,0 +1,63 @@
+/* =========================================================
+   base.css: resets, typography, layout basics
+   (buttons and focus styles get added in Phase 2)
+   ========================================================= */
+
+/* Make width/height include padding and border: much easier to reason about. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: var(--text-hero);
+}
+
+h2 {
+  font-size: var(--text-h2);
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: var(--measure);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Centered content column used by header, main, and footer. */
+.site-header,
+main,
+.site-footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.site-footer {
+  padding-block: 48px;
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}

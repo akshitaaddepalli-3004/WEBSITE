@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akshita · Personal website</title>
+  <meta name="description" content="Akshita: Computer Science (Human-Centered Computing) student at the University of Illinois Chicago. Designer's eye, engineer's toolkit.">
+
+  <!-- Google Fonts: Bricolage Grotesque (headings), DM Sans (body), JetBrains Mono (build log).
+       "preconnect" opens the connection to Google early so the fonts load faster. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+
+  <!-- Our styles. Order matters: tokens first, because the other files use its variables. -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/room.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+
+  <!-- HEADER: logo, main navigation, lights button (built in Phase 2) -->
+  <header class="site-header">
+    <nav aria-label="Main">
+      <!-- Phase 2 -->
+    </nav>
+  </header>
+
+  <!-- MAIN: everything that's unique to this page -->
+  <main id="main">
+
+    <!-- HERO: greeting and "skip the room" button (Phase 2) -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">Hi, I'm Akshita. Come on in.</h1>
+    </section>
+
+    <!-- THE ROOM: illustrated, clickable objects (Phase 3) -->
+    <section class="room-wrap" aria-label="Interactive room">
+      <!-- Phase 3 -->
+    </section>
+
+    <!-- CONTENT PANEL: shows one section at a time, filled in by panel.js (Phase 5) -->
+    <section id="panel" class="panel" aria-live="polite">
+      <!-- Phase 5 -->
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>Hand-coded by Akshita in VS Code.</p>
+  </footer>
+
+  <!-- Scripts. "defer" means: download now, but run only after the HTML has been read,
+       so the scripts can safely find elements on the page. They run in this order. -->
+  <script src="js/content.js" defer></script>
+  <script src="js/panel.js" defer></script>
+  <script src="js/room.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
