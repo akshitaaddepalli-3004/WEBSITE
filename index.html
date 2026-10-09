@@ -20,19 +20,43 @@
 </head>
 <body>
 
-  <!-- HEADER: logo, main navigation, lights button (built in Phase 2) -->
+  <!-- HEADER: logo, main navigation, lights button -->
   <header class="site-header">
-    <nav aria-label="Main">
-      <!-- Phase 2 -->
-    </nav>
+    <!-- The logo takes you back to the intro (wired up in Phase 5). -->
+    <a class="logo" href="#">akshita.</a>
+
+    <div class="header-actions">
+      <!-- aria-label names this nav for screen readers ("Main navigation"). -->
+      <nav aria-label="Main">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#projects">Projects</a></li>
+          <li><a class="nav-link" href="#experience">Experience</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- type="button" stops it from acting like a form "submit" button.
+           It doesn't do anything yet; room.js makes it work in Phase 4. -->
+      <button type="button" class="btn btn-outline" id="lights-toggle">Lights off</button>
+    </div>
   </header>
 
   <!-- MAIN: everything that's unique to this page -->
   <main id="main">
 
-    <!-- HERO: greeting and "skip the room" button (Phase 2) -->
+    <!-- HERO: greeting and "skip the room" button -->
     <section class="hero" aria-labelledby="hero-heading">
-      <h1 id="hero-heading">Hi, I'm Akshita. Come on in.</h1>
+      <div class="hero-text">
+        <h1 id="hero-heading">Hi, I'm Akshita.<br>Come on in.</h1>
+        <p class="hero-intro">
+          CS student at UIC, focused on human-centered computing. I design spaces,
+          then I build the software for them. Click anything in my room to look around.
+        </p>
+      </div>
+
+      <!-- For visitors (like recruiters) who want everything at once. -->
+      <a class="btn btn-filled" href="#all">Skip the room, show me everything</a>
     </section>
 
     <!-- THE ROOM: illustrated, clickable objects (Phase 3) -->

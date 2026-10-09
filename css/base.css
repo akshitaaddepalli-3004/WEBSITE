@@ -1,6 +1,6 @@
 /* =========================================================
-   base.css: resets, typography, layout basics
-   (buttons and focus styles get added in Phase 2)
+   base.css: resets, typography, layout, buttons, focus,
+   plus the header and hero (they're small, so they live here)
    ========================================================= */
 
 /* Make width/height include padding and border: much easier to reason about. */
@@ -60,4 +60,140 @@ main,
   padding-block: 48px;
   color: var(--ink-soft);
   font-size: var(--text-small);
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--ink);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* ---------- Focus ring ----------
+   :focus-visible only shows the ring when you use the keyboard (Tab),
+   not when you click with a mouse. Keyboard users always see where they are. */
+:focus-visible {
+  outline: 3px solid var(--highlight);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* ---------- Buttons ----------
+   .btn is shared by real <button>s and links styled as buttons.
+   inline-flex + align-items centers the text vertically;
+   min-height keeps every button at least 44px tall (easy to tap). */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-min);
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--ink);
+  font: 700 15px var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Filled: dark background, light text. For the main action. */
+.btn-filled {
+  background: var(--ink);
+  color: var(--card-bg);
+}
+
+.btn-filled:hover {
+  background: var(--ink-soft);
+  border-color: var(--ink-soft);
+  color: var(--card-bg);
+}
+
+/* Outline: transparent background, dark border. For secondary actions. */
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--card-bg);
+}
+
+/* ---------- Header ----------
+   Flexbox puts the logo and the nav on one row.
+   flex-wrap lets the nav drop to its own line when there isn't room. */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 28px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  text-decoration: none;
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+}
+
+/* Remove the default bullets and indent from the nav list. */
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  padding: 0 4px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 16px 28px;
+}
+
+/* flex: 1 1 560px = "grow and shrink, start around 560px wide".
+   On narrow screens it takes the full row and the button wraps below. */
+.hero-text {
+  flex: 1 1 560px;
+}
+
+.hero h1 {
+  margin: 0;
+  line-height: 1.02;
+  letter-spacing: -1px;
+}
+
+.hero-intro {
+  margin: 16px 0 0;
+  max-width: 620px;
+  font-size: 1.1875rem; /* 19px */
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
