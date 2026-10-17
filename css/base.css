@@ -120,6 +120,12 @@ a:hover {
   color: var(--card-bg);
 }
 
+/* When the lights are off, the lights button looks "switched on" (filled). */
+:root[data-lights="off"] #lights-toggle {
+  background: var(--ink);
+  color: var(--card-bg);
+}
+
 /* ---------- Header ----------
    Flexbox puts the logo and the nav on one row.
    flex-wrap lets the nav drop to its own line when there isn't room. */
@@ -196,4 +202,12 @@ a:hover {
   font-size: 1.1875rem; /* 19px */
   line-height: 1.5;
   color: var(--ink-soft);
+}
+
+/* A highlighter-pen stroke behind "Come on in."
+   The gradient is see-through on top and yellow on the bottom part. */
+.hero-mark {
+  background: linear-gradient(180deg, transparent 62%, var(--highlight) 62% 88%, transparent 88%);
+  padding: 0 4px;
+  margin: 0 -4px;
 }
