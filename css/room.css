@@ -1,4 +1,302 @@
 /* =========================================================
    room.css: the room illustration and its objects
-   (built in Phase 3)
+   ---------------------------------------------------------
+   How it works:
+   - .room is position: relative, so it becomes the "frame"
+     that everything inside is positioned against.
+   - Each object is position: absolute with left/top/width/
+     height in PERCENTAGES of the room, so the whole picture
+     scales when the window gets wider or narrower.
+   - Objects are placed by their data-section (what they DO),
+     not by what they look like, so the drawing can change.
    ========================================================= */
+
+/* ---------- The room box ---------- */
+.room {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  border-radius: var(--radius-room);
+  overflow: hidden;           /* clip anything poking past the rounded corners */
+  background: var(--wall);
+}
+
+.room-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30%;
+  background: var(--floor);
+}
+
+/* A soft shadow line where the wall meets the floor */
+.room-baseboard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.room-tip {
+  margin: 14px 4px 0;
+  font-size: var(--text-small);
+  color: var(--ink-soft);
+}
+
+/* ---------- Clickable objects (shared) ----------
+   Reset the browser's default button look so only our drawing shows. */
+.room-object {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* The hover label. Hidden for now; Phase 4 makes it appear. */
+.room-label {
+  position: absolute;
+  left: 50%;
+  top: -36px;
+  transform: translateX(-50%);   /* centers it above the object */
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--card-bg);
+  color: var(--ink);
+  font: 700 13px/1 var(--font-body);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;          /* the label never blocks clicks */
+}
+
+/* Every drawing part inside an object is positioned inside that object. */
+.room-object > span {
+  position: absolute;
+}
+
+/* ---------- Positions (left, top, width, height from the plan) ---------- */
+.room-object[data-section="about"]      { left: 6%;  top: 10%; width: 18%; height: 38%; }
+.room-object[data-section="experience"] { left: 31%; top: 9%;  width: 25%; height: 32%; }
+.room-object[data-section="skills"]     { left: 74%; top: 6%;  width: 19%; height: 64%; }
+.room-object[data-section="projects"]   { left: 37%; top: 39%; width: 17%; height: 21%; }
+.room-object[data-section="contact"]    { left: 57%; top: 49%; width: 6%;  height: 11%; }
+
+/* ---------- Window ---------- */
+/* inset: 0 is shorthand for top/right/bottom/left: 0 (fill the whole object) */
+.window-glass {
+  inset: 0;
+  border: 10px solid var(--card-bg);
+  border-radius: 10px;
+  background: var(--sky);
+}
+
+.window-bar {
+  background: var(--card-bg);
+}
+
+.window-bar-vertical {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  margin-left: -4px;   /* half its width, so it sits exactly in the middle */
+}
+
+.window-bar-horizontal {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 8px;
+  margin-top: -4px;
+}
+
+/* The sun (lights on) or moon (lights off): same circle, color from --orb */
+.window-orb {
+  right: 22%;
+  top: 18%;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--orb);
+}
+
+/* ---------- Corkboard ---------- */
+.cork {
+  inset: 0;
+  background: var(--cork);
+  border: 8px solid var(--wood);
+  border-radius: 6px;
+}
+
+.cork-note {
+  width: 34%;
+  height: 42%;
+  padding: 8px;
+  color: var(--ink);
+  font: 700 11px/1.3 var(--font-body);
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cork-note-one {
+  left: 12%;
+  top: 20%;
+  background: var(--card-bg);
+  transform: rotate(-4deg);
+}
+
+.cork-note-two {
+  left: 54%;
+  top: 26%;
+  background: var(--highlight);
+  transform: rotate(5deg);
+}
+
+/* ---------- Bookshelf ---------- */
+.shelf-back {
+  inset: 0;
+  background: var(--wood);
+  border-radius: 6px;
+}
+
+/* Each shelf is a flex row; align-items: flex-end stands books on the shelf */
+.shelf {
+  left: 8%;
+  right: 8%;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  border-bottom: 6px solid var(--wood-dark);
+}
+
+.shelf-top    { top: 6%;  height: 26%; }
+.shelf-middle { top: 38%; height: 26%; }
+.shelf-bottom { top: 70%; height: 24%; }
+
+.book.lying-down { border-radius: 4px; }
+.book.globe      { border-radius: 50% 50% 4px 4px; }
+
+/* ---------- Shared colors for books and code lines ---------- */
+.coral      { background: var(--coral); }
+.yellow     { background: var(--highlight); }
+.teal       { background: var(--teal); }
+.cream      { background: var(--card-bg); }
+.periwinkle { background: var(--periwinkle); }
+
+/* ---------- Desk (decoration) ---------- */
+.desk-top,
+.desk-leg {
+  position: absolute;
+  background: var(--wood-dark);
+}
+
+.desk-top {
+  left: 28%;
+  top: 60%;
+  width: 40%;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.desk-leg {
+  top: 63%;
+  width: 12px;
+  height: 27%;
+}
+
+.desk-leg-left  { left: 30%; }
+.desk-leg-right { left: 65%; }
+
+/* ---------- Laptop ---------- */
+.laptop-screen {
+  left: 6%;
+  right: 6%;
+  top: 0;
+  bottom: 14%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  background: var(--ink);
+  border: 6px solid var(--ink-soft);
+  border-radius: 8px 8px 0 0;
+}
+
+.code-line {
+  height: 6px;
+  border-radius: 3px;
+}
+
+.laptop-base {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14%;
+  background: var(--periwinkle);
+  border-radius: 0 0 8px 8px;
+}
+
+/* ---------- Mug ---------- */
+.mug-body {
+  left: 0;
+  bottom: 0;
+  width: 72%;
+  height: 80%;
+  background: var(--coral);
+  border-radius: 4px 4px 12px 12px;
+}
+
+/* The handle is a box with only its right, top and bottom borders showing */
+.mug-handle {
+  right: 0;
+  top: 34%;
+  width: 34%;
+  height: 36%;
+  border: 5px solid var(--coral);
+  border-left: 0;
+  border-radius: 0 12px 12px 0;
+}
+
+/* ---------- Plant (decoration) ---------- */
+.plant {
+  position: absolute;
+  left: 8%;
+  bottom: 8%;
+  width: 8%;
+  height: 28%;
+}
+
+.plant > span {
+  position: absolute;
+}
+
+.plant-pot {
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 32%;
+  background: var(--accent);
+  border-radius: 4px 4px 14px 14px;
+}
+
+.plant-leaf-left {
+  bottom: 28%;
+  left: 0;
+  width: 55%;
+  height: 60%;
+  background: var(--teal);
+  border-radius: 50% 50% 50% 0;
+}
+
+.plant-leaf-right {
+  bottom: 30%;
+  right: 0;
+  width: 55%;
+  height: 75%;
+  background: var(--teal-light);
+  border-radius: 50% 50% 0 50%;
+}

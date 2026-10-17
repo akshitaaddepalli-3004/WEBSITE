@@ -59,9 +59,95 @@
       <a class="btn btn-filled" href="#all">Skip the room, show me everything</a>
     </section>
 
-    <!-- THE ROOM: illustrated, clickable objects (Phase 3) -->
+    <!-- THE ROOM: illustrated, clickable objects.
+         Each clickable object is a <button> with data-section="..." saying which
+         section it opens. Everything inside a button is just drawing, so it's
+         hidden from screen readers with aria-hidden="true"; the aria-label is
+         what gets read out instead. To redraw the room later, change the
+         drawing inside a button but keep the button and its data-section. -->
     <section class="room-wrap" aria-label="Interactive room">
-      <!-- Phase 3 -->
+      <div class="room">
+
+        <!-- Background: the floor strip and the line where wall meets floor -->
+        <div class="room-floor" aria-hidden="true"></div>
+        <div class="room-baseboard" aria-hidden="true"></div>
+
+        <!-- Window → About me -->
+        <button type="button" class="room-object" data-section="about" aria-label="Window: about me">
+          <span class="room-label" aria-hidden="true">About me</span>
+          <span class="window-glass" aria-hidden="true"></span>
+          <span class="window-bar window-bar-vertical" aria-hidden="true"></span>
+          <span class="window-bar window-bar-horizontal" aria-hidden="true"></span>
+          <span class="window-orb" aria-hidden="true"></span>
+        </button>
+
+        <!-- Corkboard → Experience -->
+        <button type="button" class="room-object" data-section="experience" aria-label="Corkboard: experience">
+          <span class="room-label" aria-hidden="true">Experience</span>
+          <span class="cork" aria-hidden="true"></span>
+          <span class="cork-note cork-note-one" aria-hidden="true">Home Centre<br>design</span>
+          <span class="cork-note cork-note-two" aria-hidden="true">Open Maison<br>tech</span>
+        </button>
+
+        <!-- Bookshelf → Skills & courses -->
+        <button type="button" class="room-object" data-section="skills" aria-label="Bookshelf: skills and courses">
+          <span class="room-label" aria-hidden="true">Skills &amp; courses</span>
+          <span class="shelf-back" aria-hidden="true"></span>
+          <!-- Each shelf is a row of books. A book's width and height are set
+               inline because every book is a different size. -->
+          <span class="shelf shelf-top" aria-hidden="true">
+            <span class="book coral"      style="width: 14%; height: 90%"></span>
+            <span class="book yellow"     style="width: 12%; height: 75%"></span>
+            <span class="book teal"       style="width: 16%; height: 95%"></span>
+            <span class="book cream"      style="width: 12%; height: 70%"></span>
+            <span class="book periwinkle" style="width: 14%; height: 85%"></span>
+          </span>
+          <span class="shelf shelf-middle" aria-hidden="true">
+            <span class="book teal"  style="width: 16%; height: 80%"></span>
+            <span class="book coral" style="width: 12%; height: 95%"></span>
+            <span class="book cream lying-down" style="width: 30%; height: 40%"></span>
+          </span>
+          <span class="shelf shelf-bottom" aria-hidden="true">
+            <span class="book periwinkle globe" style="width: 40%; height: 60%"></span>
+            <span class="book yellow" style="width: 14%; height: 85%"></span>
+          </span>
+        </button>
+
+        <!-- Desk (decoration only: not a button, so Tab skips it) -->
+        <div class="desk" aria-hidden="true">
+          <span class="desk-top"></span>
+          <span class="desk-leg desk-leg-left"></span>
+          <span class="desk-leg desk-leg-right"></span>
+        </div>
+
+        <!-- Laptop → Projects -->
+        <button type="button" class="room-object" data-section="projects" aria-label="Laptop: projects">
+          <span class="room-label" aria-hidden="true">Projects</span>
+          <span class="laptop-screen" aria-hidden="true">
+            <span class="code-line yellow"     style="width: 60%"></span>
+            <span class="code-line periwinkle" style="width: 80%"></span>
+            <span class="code-line coral"      style="width: 45%"></span>
+            <span class="code-line periwinkle" style="width: 70%"></span>
+          </span>
+          <span class="laptop-base" aria-hidden="true"></span>
+        </button>
+
+        <!-- Mug → Contact -->
+        <button type="button" class="room-object" data-section="contact" aria-label="Mug: say hi">
+          <span class="room-label" aria-hidden="true">Say hi</span>
+          <span class="mug-body" aria-hidden="true"></span>
+          <span class="mug-handle" aria-hidden="true"></span>
+        </button>
+
+        <!-- Plant (decoration only) -->
+        <div class="plant" aria-hidden="true">
+          <span class="plant-pot"></span>
+          <span class="plant-leaf plant-leaf-left"></span>
+          <span class="plant-leaf plant-leaf-right"></span>
+        </div>
+
+      </div>
+      <p class="room-tip">Tip: use Tab to move between objects in the room, and Enter to open one.</p>
     </section>
 
     <!-- CONTENT PANEL: shows one section at a time, filled in by panel.js (Phase 5) -->
